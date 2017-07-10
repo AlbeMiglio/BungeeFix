@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package FlowZz.BungeeFix;
 
 import org.bukkit.event.EventHandler;
@@ -42,15 +38,15 @@ public class Main extends JavaPlugin implements Listener
     public boolean onCommand(final CommandSender Send, final Command Cmd, final String label, final String[] Args) {
         if ((Send instanceof Player || Send instanceof ConsoleCommandSender) && Cmd.getName().equalsIgnoreCase("BungeeFix")) {
             if (!Send.hasPermission("BungeeFix.reload")) {
-                Send.sendMessage("§cNo permissions.");
+                Send.sendMessage("Â§cNo permissions.");
                 return false;
             }
             if (Args[0].equalsIgnoreCase("Reload")) {
                 this.reloadConfig();
-                Send.sendMessage("§aReload Completed.");
+                Send.sendMessage("Â§aReload Completed.");
                 return true;
             }
-            Send.sendMessage("§cCorrect syntax: /BungeeFix Reload");
+            Send.sendMessage("Â§cCorrect syntax: /BungeeFix Reload");
         }
         return false;
     }
