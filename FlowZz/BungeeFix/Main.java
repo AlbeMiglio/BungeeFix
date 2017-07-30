@@ -16,6 +16,7 @@ import org.spigotmc.SpigotConfig;
 public class Main extends JavaPlugin implements Listener
 {
 	public static ArrayList<String> Griefer = new ArrayList<String>();
+	public static ArrayList<String> Ips = new ArrayList<String>();
 	
 	public void onEnable()
 	{
@@ -50,17 +51,31 @@ public class Main extends JavaPlugin implements Listener
 		{
 		if (Cmd.getName().equalsIgnoreCase("BungeeFix"))
 		{
-			if (Send.hasPermission("BungeeFix.reload"))
+			if (Args.length > 0)
 			{
-			if (Args[0].equalsIgnoreCase("Reload"))
+			if (Send.hasPermission("BungeeFix.use"))
 			{
-				reloadConfig();
-				Send.sendMessage("§aReload Completed.");
+			if (Args[0].equalsIgnoreCase("add"))
+			{
+				Ips = (ArrayList<String>) getConfig().getStringList("Bungeecord IPs");
+				Ips.add(Args[1]);
+				getConfig().set("Bungeecord IPs", Ips);
+				Send.sendMessage("§aIP added correctly");
+				saveConfig();
+		        return true;
+			}
+			else if (Args[0].equalsIgnoreCase("remove") || Args[0].equalsIgnoreCase("rem"))
+			{
+				Ips = (ArrayList<String>) getConfig().getStringList("Bungeecord IPs");
+				Ips.remove(Args[1]);
+				getConfig().set("Bungeecord IPs", Ips);
+				Send.sendMessage("§aIP removed correctly");
+				saveConfig();
 		        return true;
 			}
 			else
 			{
-				Send.sendMessage("§cCorrect syntax: /BungeeFix Reload");
+				Send.sendMessage("§cCorrect syntax: /BungeeFix <Remove|Add> {IP} ");
 			}
 			}
 			else
@@ -68,6 +83,11 @@ public class Main extends JavaPlugin implements Listener
 
 				Send.sendMessage("§cNo permissions.");
 				return false;
+			}
+		}
+			else
+			{
+				Send.sendMessage("§cCorrect syntax: /BungeeFix <Remove|Add> {IP} ");
 			}
 		}
     }
