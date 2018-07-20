@@ -1,0 +1,10 @@
+name: BungeeFix
+author: FlowZz
+version: 1.3
+main: it.flowzz.bungeefix.BungeeFix
+commands:
+  bungeefix:
+    aliases: [bfix]
+permissions:
+  bungeefix.use:
+    default: op

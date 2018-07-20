@@ -1,0 +1,9 @@
+# BungeeFix by FlowZz
+Bungeecord IPs: []
+
+Kick Message: "&aPlease join through mc.myserver.net"
+
+AutoBan:
+  Enabled: false
+
+BanCommand: "ban %player% grief attempt"
