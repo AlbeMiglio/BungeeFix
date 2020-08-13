@@ -1,10 +1,10 @@
 package it.flowzz.bungeefix;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.spigotmc.SpigotConfig;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BungeeFix extends JavaPlugin {
 
@@ -14,6 +14,7 @@ public class BungeeFix extends JavaPlugin {
 	
 	public void onEnable() {
 	    instance = this;
+	    saveDefaultConfig();
 		if (!isBungeeCord()) {
 			Bukkit.getPluginManager().disablePlugin(this);
 			return;
@@ -28,7 +29,7 @@ public class BungeeFix extends JavaPlugin {
     public static BungeeFix getInstance() { return instance; }
 
     private boolean isBungeeCord() {
-	    boolean Cfg = SpigotConfig.bungee;
+	    boolean Cfg = Bukkit.getServer().spigot().getConfig().getBoolean("settings.bungeecord");
 	    boolean Premium = Bukkit.getServer().getOnlineMode();
 	    if(Cfg && (!(Premium))) {
 	        return true;
